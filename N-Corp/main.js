@@ -47,6 +47,7 @@ app.engine(".hbs", handlebars.engine({
 
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "public"));
+app.set('trust proxy', true);
 
 [
     ["/image/logo.png", "public/logo.png"],
