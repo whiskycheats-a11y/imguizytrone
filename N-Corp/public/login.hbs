@@ -1,0 +1,247 @@
+<div class="relative min-h-screen w-full flex items-center justify-center p-4 md:p-10 overflow-hidden bg-black">
+    <!-- Background Accents -->
+    <div class="absolute inset-0 z-0">
+        <div
+            class="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[120px] animate-pulse-glow">
+        </div>
+        <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-900/10 rounded-full blur-[120px] animate-float">
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+        <!-- Left Side: Branding -->
+        <div class="hidden lg:flex flex-col items-center text-center space-y-8 animate-fade-in-up">
+            <div class="relative group">
+                <div
+                    class="absolute inset-0 bg-red-600 blur-[60px] opacity-20 group-hover:opacity-40 transition-opacity duration-700">
+                </div>
+                <img src="/image/logo.png"
+                    class="relative w-48 h-48 object-contain drop-shadow-[0_0_30px_rgba(220,38,38,0.5)] animate-float"
+                    alt="N-CORP">
+            </div>
+
+            <div class="space-y-4">
+                <h1 class="text-6xl font-black text-white tracking-tighter uppercase italic">
+                    N<span class="text-red-600">-</span>CORP <span class="text-gray-500">GROUP</span>
+                </h1>
+                <p class="text-gray-400 text-lg max-w-md mx-auto leading-relaxed">
+                    Experience the next generation of performance. Browse our extensive catalog of undetectable,
+                    high-performance software.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Side: Login Form -->
+        <div class="flex justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 0.2s;">
+            <div
+                class="w-full max-w-md backdrop-blur-3xl bg-[#0a0a0a]/80 border border-white/5 rounded-[2.5rem] p-10 md:p-12 shadow-[0_40px_100px_rgba(0,0,0,0.8)] relative group overflow-hidden">
+                <!-- Border Ray -->
+                <div
+                    class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-600/50 to-transparent">
+                </div>
+
+                <div class="relative z-10">
+                    <div class="text-center mb-10">
+                        <h2 class="text-4xl font-black text-white mb-2 tracking-tight">Welcome Back</h2>
+                        <p class="text-gray-500 text-sm font-medium">Enter your credentials to access your dashboard.
+                        </p>
+                    </div>
+
+                    <!-- Role Selector (Themed) -->
+                    <div class="grid grid-cols-3 gap-1.5 p-1 bg-white/5 rounded-2xl mb-8 border border-white/5">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" value="seller" class="peer hidden" />
+                            <div
+                                class="py-2.5 text-center text-[10px] font-black uppercase tracking-widest text-gray-500 rounded-xl transition-all peer-checked:bg-white/10 peer-checked:text-white">
+                                Seller</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" value="streamer" class="peer hidden" />
+                            <div
+                                class="py-2.5 text-center text-[10px] font-black uppercase tracking-widest text-gray-500 rounded-xl transition-all peer-checked:bg-white/10 peer-checked:text-white">
+                                Streamer</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="role" value="key" class="peer hidden" checked />
+                            <div
+                                class="py-2.5 text-center text-[10px] font-black uppercase tracking-widest text-gray-500 rounded-xl transition-all peer-checked:bg-white/10 peer-checked:text-white">
+                                Key</div>
+                        </label>
+                    </div>
+
+                    <form class="login space-y-6">
+                        <div id="key-group" class="space-y-4">
+                            <div class="space-y-2">
+                                <label
+                                    class="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">License
+                                    Key</label>
+                                <div class="relative">
+                                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <input type="text" id="key" name="key"
+                                        class="w-full bg-white/5 border border-white/5 rounded-2xl pl-12 pr-4 py-4 text-sm text-white placeholder-gray-700 outline-none focus:border-red-600/50 focus:bg-white/10 transition-all"
+                                        placeholder="XXXX-XXXX-XXXX-XXXX" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="credentials-group" class="hidden space-y-4">
+                            <div class="space-y-2">
+                                <label
+                                    class="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Username</label>
+                                <input type="text" id="username" name="user"
+                                    class="w-full bg-white/5 border border-white/5 rounded-2xl px-5 py-4 text-sm text-white placeholder-gray-700 outline-none focus:border-red-600/50 transition-all"
+                                    placeholder="username" />
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center px-1">
+                                    <label
+                                        class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Password</label>
+                                    <a href="#"
+                                        class="text-[10px] font-black text-red-500 uppercase tracking-widest hover:text-red-400">Forgot?</a>
+                                </div>
+                                <input type="password" id="password" name="pass"
+                                    class="w-full bg-white/5 border border-white/5 rounded-2xl px-5 py-4 text-sm text-white placeholder-gray-700 outline-none focus:border-red-600/50 transition-all"
+                                    placeholder="••••••••••••" />
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2 mb-2">
+                                <input type="checkbox" id="save-input" name="remember" class="rounded border-white/20 bg-white/5 text-red-600 focus:ring-red-600/50">
+                                <label for="save-input" class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Remember me</label>
+                            </div>
+                        <button type="submit"
+                            class="w-full h-14 bg-red-600 text-white font-black uppercase tracking-[0.2em] rounded-2xl flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(220,38,38,0.3)] hover:bg-red-500 hover:shadow-[0_0_50px_rgba(220,38,38,0.5)] transition-all active:scale-95">
+                            <span class="text">Sign In</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                            <div
+                                class="spin hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin">
+                            </div>
+                        </button>
+
+                        <!-- Social Login -->
+                        <div class="relative py-4 flex items-center justify-center">
+                            <div class="absolute w-full h-[1px] bg-white/5"></div>
+                            <span
+                                class="relative z-10 px-4 bg-[#0a0a0a] text-[10px] font-black text-gray-600 uppercase tracking-widest">Or
+                                continue with</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4">
+                            <a href="#"
+                                class="flex items-center justify-center gap-3 bg-white/5 border border-white/5 py-4 rounded-2xl hover:bg-white/10 transition-all group">
+                                <svg class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform"
+                                    fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.486 13.486 0 0 0-.585 1.205 17.513 17.513 0 0 0-5.545 0c-.201-.43-.41-.837-.62-1.205a.076.076 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.076.076 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
+                                </svg>
+                                <span
+                                    class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 group-hover:text-white transition-colors">Discord</span>
+                            </a>
+                        </div>
+                    </form>
+
+                    <div id="message" class="hidden mt-6 text-center">
+                        <p
+                            class="text-[10px] font-black uppercase tracking-widest text-red-500 bg-red-500/10 border border-red-500/20 rounded-xl py-3 px-4 inline-block w-full">
+                            Invalid credentials provided.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        const $keyGroup = $("#key-group");
+        const $credentialsGroup = $("#credentials-group");
+        const $message = $(".login #message"), $submit = $(".login button[type='submit']");
+
+        $("input[name='role']").change(function () {
+            const role = $(this).val();
+            $message.addClass("hidden");
+
+            if (role === "key") {
+                $keyGroup.slideDown(200);
+                $credentialsGroup.slideUp(200);
+                $("#key").attr("required", true);
+                $("#username, #password").removeAttr("required");
+            } else {
+                $keyGroup.slideUp(200);
+                $credentialsGroup.slideDown(200);
+                $("#key").removeAttr("required");
+                $("#username, #password").attr("required", true);
+            };
+        });
+
+        function showLoading(isLoading) {
+            $submit.prop("disabled", isLoading);
+            $submit.find(".text").text(isLoading ? "" : "Authenticate");
+            $submit.find(".spin").toggleClass("hidden", !isLoading);
+        };
+
+        $(".login").submit(e => {
+            e.preventDefault();
+            showLoading(true);
+            $message.addClass("hidden");
+
+            let userVal, passVal;
+            const role = $("input[name='role']:checked").val();
+
+            if (role === "key")
+                userVal = $("#key").val();
+            else {
+                userVal = $("#username").val();
+                passVal = $("#password").val();
+            };
+
+            setTimeout(() => {
+                let queryString;
+                if (role === "key") {
+                    queryString = `key=${userVal}&role=${role}`;
+                } else {
+                    queryString = `user=${userVal}&pass=${passVal}&role=${role}`;
+                }
+
+                $.post(`/api/login?${queryString}`, data => {
+                    if (data.status) {
+                        if (document.querySelector("#save-input").checked)
+                            localStorage.setItem("storage", `${role}~${userVal}~${role === "key" ? "" : passVal}`);
+                        window.location.replace("/dashboard");
+                    } else {
+                        if (role !== "key") $("#password").val("");
+                        showLoading(false);
+                        $message.removeClass("hidden").find("p").text(data.message || "Invalid credentials.");
+                    };
+                }).fail(() => {
+                    showLoading(false);
+                    $message.removeClass("hidden").find("p").text("Internal Server Error.");
+                });
+            }, 800);
+        });
+
+        // Load saved session
+        if (localStorage.getItem("storage")) {
+            const [role, user, pass] = localStorage.getItem("storage").split("~");
+            document.querySelector("#save-input").checked = true;
+            $(`input[name="role"][value="${role}"]`).prop("checked", true).trigger("change");
+            if (role === "key") $("#key").val(user);
+            else {
+                $("#username").val(user);
+                $("#password").val(pass);
+            };
+        };
+    });
+</script>

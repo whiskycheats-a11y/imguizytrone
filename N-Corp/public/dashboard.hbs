@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N Corp. - Dashboard</title>
+    <script src="./js/jquery.js"></script>
+    <script src="./js/tailwindcss.js"></script>
+    <style>
+        @font-face { font-family: 'Regular'; src: url(/fonts/Rajdhani-Regular.ttf); }
+        body { font-family: 'Regular', sans-serif; background-color: #050505; color: #e5e7eb; margin: 0; min-height: 100vh; }
+        .dash-card { background: linear-gradient(135deg, rgba(20, 10, 10, 0.95), rgba(10, 5, 5, 0.98)); border: 1px solid rgba(220, 38, 38, 0.3); border-radius: 1rem; }
+    </style>
+</head>
+
+<body class="min-h-screen bg-[#050505] text-gray-300">
+    <!-- Header (matches main site) -->
+    <header class="sticky top-0 z-50 w-full px-4 py-3 md:py-4">
+        <div class="max-w-5xl mx-auto h-14 md:h-16 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl flex items-center justify-between px-4 md:px-6 shadow-lg">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-red-600/10 border border-red-600/30 rounded-lg flex items-center justify-center">
+                    <span class="font-mono text-red-600 font-bold text-lg">N</span>
+                </div>
+                <span class="font-bold text-xl tracking-wider text-white">CORP</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+                <a href="/" class="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors">Home</a>
+                <a href="/products" class="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors">Products</a>
+                <a href="https://discord.gg/n-corp" target="_blank" class="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors">Community</a>
+                <a href="/dashboard" class="text-[11px] font-black uppercase tracking-widest text-red-500">Status</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="/dashboard" class="hidden md:inline-block px-4 py-1.5 rounded-lg bg-red-600/20 text-red-400 font-black text-[10px] tracking-wider uppercase border border-red-600/30">Dashboard</a>
+                <a href="/logout" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-red-400 hover:bg-red-600/20 hover:border-red-600/40 font-black text-[10px] tracking-wider uppercase transition-colors">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 17v1a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v1h-2V6H6v12h8v-1h2z"/><path d="M21 12l-4-4v3h-5v2h5v3l4-4z"/></svg>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="max-w-5xl mx-auto px-4 py-8 md:py-12">
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">Dashboard</h1>
+            <p class="text-gray-500 mt-1">Welcome back. Manage your access and view status.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="dash-card p-6 md:p-8">
+                <div class="w-12 h-12 rounded-xl bg-red-600/20 border border-red-600/30 flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <h2 class="text-xl font-black text-white uppercase mb-2">Account Status</h2>
+                <p class="text-gray-400 text-sm">You are signed in. Your license and access are active.</p>
+            </div>
+            <div class="dash-card p-6 md:p-8">
+                <div class="w-12 h-12 rounded-xl bg-red-600/20 border border-red-600/30 flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h2 class="text-xl font-black text-white uppercase mb-2">Quick Links</h2>
+                <p class="text-gray-400 text-sm mb-4">Jump to products or support.</p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="/products" class="px-4 py-2 rounded-lg bg-red-600/20 border border-red-600/40 text-red-400 hover:bg-red-600/30 text-xs font-black uppercase tracking-wider transition-colors">Products</a>
+                    <a href="https://discord.gg/n-corp" target="_blank" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white text-xs font-black uppercase tracking-wider transition-colors">Discord</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 dash-card p-6 md:p-8">
+            <h2 class="text-lg font-black text-white uppercase mb-4">System Status</h2>
+            <div class="space-y-3 text-sm">
+                <div class="flex items-center justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400">API &amp; Auth</span>
+                    <span class="text-green-500 font-bold">Operational</span>
+                </div>
+                <div class="flex items-center justify-between py-2 border-b border-white/5">
+                    <span class="text-gray-400">License Server</span>
+                    <span class="text-green-500 font-bold">Operational</span>
+                </div>
+                <div class="flex items-center justify-between py-2">
+                    <span class="text-gray-400">Delivery</span>
+                    <span class="text-green-500 font-bold">Operational</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-5xl mx-auto px-4 py-8 mt-12 border-t border-white/5 text-center text-gray-600 text-xs">
+        © 2025 N-Corp. All rights reserved.
+    </footer>
+</body>
+
+</html>
