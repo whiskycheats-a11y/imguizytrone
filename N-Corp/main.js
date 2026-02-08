@@ -292,7 +292,7 @@ function tryListen(port) {
         process.exit(1);
     }
     server.listen(port, "0.0.0.0")
-        .once("listening", () => Print("http", `listening at http://localhost:${port} (PID ${process.pid})`))
+        .once("listening", () => Print("http", `listening at http://0.0.0.0:${port} (PID ${process.pid})`))
         .once("error", (err) => {
             if (err.code === "EADDRINUSE") {
                 Print("http", `port ${port} in use, trying ${port + 1}...`);
