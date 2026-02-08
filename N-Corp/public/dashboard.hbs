@@ -1,96 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>N Corp. - Dashboard</title>
-    <script src="./js/jquery.js"></script>
-    <script src="./js/tailwindcss.js"></script>
-    <style>
-        @font-face { font-family: 'Regular'; src: url(/fonts/Rajdhani-Regular.ttf); }
-        body { font-family: 'Regular', sans-serif; background-color: #050505; color: #e5e7eb; margin: 0; min-height: 100vh; }
-        .dash-card { background: linear-gradient(135deg, rgba(20, 10, 10, 0.95), rgba(10, 5, 5, 0.98)); border: 1px solid rgba(220, 38, 38, 0.3); border-radius: 1rem; }
-    </style>
-</head>
-
-<body class="min-h-screen bg-[#050505] text-gray-300">
-    <!-- Header (matches main site) -->
-    <header class="sticky top-0 z-50 w-full px-4 py-3 md:py-4">
-        <div class="max-w-5xl mx-auto h-14 md:h-16 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl flex items-center justify-between px-4 md:px-6 shadow-lg">
-            <a href="/" class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-red-600/10 border border-red-600/30 rounded-lg flex items-center justify-center">
-                    <span class="font-mono text-red-600 font-bold text-lg">N</span>
+<div class="min-h-screen bg-black text-white p-6 md:p-12 animate-in fade-in duration-700 selection:bg-red-600/30">
+    <div class="max-w-7xl mx-auto space-y-12">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-12">
+            <div class="space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600/10 border border-red-600/20 text-[10px] font-black uppercase tracking-widest text-red-500">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </span>
+                    Control Center Active
                 </div>
-                <span class="font-bold text-xl tracking-wider text-white">CORP</span>
-            </a>
-            <nav class="hidden md:flex items-center gap-6">
-                <a href="/" class="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors">Home</a>
-                <a href="/products" class="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors">Products</a>
-                <a href="https://discord.gg/n-corp" target="_blank" class="text-[11px] font-black uppercase tracking-widest text-gray-400 hover:text-red-500 transition-colors">Community</a>
-                <a href="/dashboard" class="text-[11px] font-black uppercase tracking-widest text-red-500">Status</a>
-            </nav>
-            <div class="flex items-center gap-3">
-                <a href="/dashboard" class="hidden md:inline-block px-4 py-1.5 rounded-lg bg-red-600/20 text-red-400 font-black text-[10px] tracking-wider uppercase border border-red-600/30">Dashboard</a>
-                <a href="/logout" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-red-400 hover:bg-red-600/20 hover:border-red-600/40 font-black text-[10px] tracking-wider uppercase transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M16 17v1a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v1h-2V6H6v12h8v-1h2z"/><path d="M21 12l-4-4v3h-5v2h5v3l4-4z"/></svg>
-                    Logout
-                </a>
+                <h1 class="text-6xl font-black tracking-tighter uppercase italic">User<span class="text-red-600">.</span>Panel</h1>
+                <p class="text-gray-500 font-medium max-w-lg leading-relaxed">Manage your active licenses, system status, and exclusive tools from your encrypted command center.</p>
             </div>
-        </div>
-    </header>
-
-    <!-- Main content -->
-    <main class="max-w-5xl mx-auto px-4 py-8 md:py-12">
-        <div class="mb-8">
-            <h1 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">Dashboard</h1>
-            <p class="text-gray-500 mt-1">Welcome back. Manage your access and view status.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="dash-card p-6 md:p-8">
-                <div class="w-12 h-12 rounded-xl bg-red-600/20 border border-red-600/30 flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="flex items-center gap-4">
+                <div class="text-right hidden sm:block">
+                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Connected as</p>
+                    <p class="text-sm font-black text-white uppercase italic">Elite Member</p>
                 </div>
-                <h2 class="text-xl font-black text-white uppercase mb-2">Account Status</h2>
-                <p class="text-gray-400 text-sm">You are signed in. Your license and access are active.</p>
-            </div>
-            <div class="dash-card p-6 md:p-8">
-                <div class="w-12 h-12 rounded-xl bg-red-600/20 border border-red-600/30 flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                </div>
-                <h2 class="text-xl font-black text-white uppercase mb-2">Quick Links</h2>
-                <p class="text-gray-400 text-sm mb-4">Jump to products or support.</p>
-                <div class="flex flex-wrap gap-3">
-                    <a href="/products" class="px-4 py-2 rounded-lg bg-red-600/20 border border-red-600/40 text-red-400 hover:bg-red-600/30 text-xs font-black uppercase tracking-wider transition-colors">Products</a>
-                    <a href="https://discord.gg/n-corp" target="_blank" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-400 hover:text-white text-xs font-black uppercase tracking-wider transition-colors">Discord</a>
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.3)] border border-white/10 group cursor-pointer hover:scale-105 transition-transform">
+                    <svg class="w-6 h-6 text-white group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </div>
             </div>
         </div>
 
-        <div class="mt-8 dash-card p-6 md:p-8">
-            <h2 class="text-lg font-black text-white uppercase mb-4">System Status</h2>
-            <div class="space-y-3 text-sm">
-                <div class="flex items-center justify-between py-2 border-b border-white/5">
-                    <span class="text-gray-400">API &amp; Auth</span>
-                    <span class="text-green-500 font-bold">Operational</span>
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4 hover:border-red-600/30 transition-all group relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex items-center justify-between relative z-10">
+                    <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black text-green-500 uppercase tracking-widest bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">Active</span>
                 </div>
-                <div class="flex items-center justify-between py-2 border-b border-white/5">
-                    <span class="text-gray-400">License Server</span>
-                    <span class="text-green-500 font-bold">Operational</span>
+                <div class="relative z-10">
+                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Active Licenses</p>
+                    <p class="text-4xl font-black mt-1">02</p>
                 </div>
-                <div class="flex items-center justify-between py-2">
-                    <span class="text-gray-400">Delivery</span>
-                    <span class="text-green-500 font-bold">Operational</span>
+            </div>
+            
+            <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4 hover:border-red-600/30 transition-all group relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex items-center justify-between relative z-10">
+                    <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-black text-red-500 uppercase tracking-widest bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">Secure</span>
+                </div>
+                <div class="relative z-10">
+                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">System Status</p>
+                    <p class="text-4xl font-black mt-1 uppercase italic tracking-tight">Stable</p>
+                </div>
+            </div>
+
+            <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4 hover:border-red-600/30 transition-all group relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex items-center justify-between relative z-10">
+                    <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <div class="relative z-10">
+                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Time Remaining</p>
+                    <p class="text-4xl font-black mt-1">28<span class="text-lg text-gray-500 ml-1">Days</span></p>
                 </div>
             </div>
         </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="max-w-5xl mx-auto px-4 py-8 mt-12 border-t border-white/5 text-center text-gray-600 text-xs">
-        © 2025 N-Corp. All rights reserved.
-    </footer>
-</body>
+        <!-- Main Content Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-20">
+            <!-- Left: Quick Actions -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
+                    <div class="p-8 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+                        <h3 class="text-xl font-black uppercase tracking-tight italic">Available Software</h3>
+                        <button class="text-[10px] font-black text-red-500 uppercase tracking-widest hover:text-red-400 transition-colors">Catalog</button>
+                    </div>
+                    <div class="p-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-6 bg-white/5 border border-white/5 rounded-2xl flex items-center gap-6 hover:bg-white/10 transition-all cursor-pointer group hover:border-red-600/20">
+                            <div class="w-16 h-16 rounded-2xl bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-red-600/20">
+                                <img src="/image/logo.png" class="w-10 h-10 opacity-60 group-hover:opacity-100 group-hover:invert transition-all" alt="">
+                            </div>
+                            <div>
+                                <p class="font-black uppercase text-base tracking-wide text-white">Phantom Core</p>
+                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">v2.4.1 • <span class="text-green-500">Undetected</span></p>
+                            </div>
+                        </div>
+                        <div class="p-6 bg-white/5 border border-white/5 rounded-2xl flex items-center gap-6 hover:bg-white/10 transition-all cursor-pointer group hover:border-red-600/20">
+                            <div class="w-16 h-16 rounded-2xl bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-red-600/20">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="font-black uppercase text-base tracking-wide text-white">Shield Bypass</p>
+                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Active Protection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-</html>
+                <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2.5rem] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-white/20 transition-all group">
+                    <div class="flex items-center gap-6">
+                        <div class="w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center shadow-[0_0_30px_rgba(220,38,38,0.4)] group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="font-black uppercase text-xl tracking-tight italic">Download Launcher</p>
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Latest Stable Build (v4.0.2)</p>
+                        </div>
+                    </div>
+                    <button class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase text-[11px] tracking-[0.25em] rounded-2xl hover:bg-gray-200 transition-all active:scale-95 shadow-xl">Initialize Fetch</button>
+                </div>
+            </div>
+
+            <!-- Right: Support & Community -->
+            <div class="space-y-6">
+                <div class="backdrop-blur-xl bg-red-600/5 border border-red-600/20 rounded-[2.5rem] p-8 space-y-6 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:rotate-12 transition-transform">
+                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.486 13.486 0 0 0-.585 1.205 17.513 17.513 0 0 0-5.545 0c-.201-.43-.41-.837-.62-1.205a.076.076 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.076.076 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-black uppercase tracking-tight italic text-white">Elite Hub</h4>
+                        <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">Authorized Area Only</p>
+                    </div>
+                    <p class="text-gray-400 text-sm font-medium leading-relaxed">Connect with thousands of elite users. Get instant support and early access to experimental builds.</p>
+                    <a href="https://discord.gg/n-corp" target="_blank" class="flex items-center justify-center gap-4 w-full py-5 bg-[#5865F2] rounded-2xl text-white font-black uppercase text-[11px] tracking-[0.25em] shadow-[0_0_30px_rgba(88,101,242,0.3)] hover:scale-[1.02] transition-all relative overflow-hidden group/discord">
+                        <div class="absolute inset-0 bg-white/10 translate-y-full group-hover/discord:translate-y-0 transition-transform duration-300"></div>
+                        <span class="relative z-10">Sync Protocol</span>
+                    </a>
+                </div>
+
+                <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2.5rem] p-8 space-y-6 shadow-xl">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest">System Feed</h4>
+                        <div class="flex gap-1">
+                            <div class="w-1 h-1 rounded-full bg-red-600 animate-pulse"></div>
+                            <div class="w-1 h-1 rounded-full bg-red-600 animate-pulse" style="animation-delay: 0.2s"></div>
+                            <div class="w-1 h-1 rounded-full bg-red-600 animate-pulse" style="animation-delay: 0.4s"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-600 mt-1.5 shrink-0 shadow-[0_0_10px_rgba(220,38,38,0.8)]"></div>
+                            <div class="space-y-1.5">
+                                <p class="text-[10px] font-black uppercase tracking-widest text-red-500">Security Update</p>
+                                <p class="text-xs font-bold text-gray-300">Vanguard bypass updated. All systems stable.</p>
+                                <p class="text-[8px] font-black text-gray-600 uppercase">12 Minutes Ago</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all">
+                            <div class="w-2.5 h-2.5 rounded-full bg-blue-500 mt-1.5 shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
+                            <div class="space-y-1.5">
+                                <p class="text-[10px] font-black uppercase tracking-widest text-blue-500">Feature Release</p>
+                                <p class="text-xs font-bold text-gray-300">Phantom Core v2.4.1 is now live for all users.</p>
+                                <p class="text-[8px] font-black text-gray-600 uppercase">2 Hours Ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
