@@ -81,18 +81,18 @@
                 <!-- Stack Wrapper -->
                 <div id="product-stack" class="relative w-full max-w-2xl min-h-[720px] perspective-[2000px]">
 
-                    <!-- Card 1: FREE BYPASS -->
+                    <!-- Card 1: UID BYPASS FREE -->
                     <div class="product-card stack-active" data-index="0">
                         <div class="product-card-inner">
                             <div class="card-bg-wrap">
-                                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070"
-                                    class="card-bg" alt="Free Bypass">
+                                <img src="https://i.ibb.co/Vp8nFmP/image-1770542156555.png"
+                                    class="card-bg" alt="UID Bypass Free">
                             </div>
                             <div class="card-content">
                             <div class="mb-4">
                                 <span class="badge border border-white/20 bg-white/5">Starter Pack</span>
                             </div>
-                            <h3 class="card-title text-3xl md:text-5xl">FREE BYPASS</h3>
+                            <h3 class="card-title text-3xl md:text-5xl">UID BYPASS FREE</h3>
                             <p class="card-desc text-sm md:text-base">Essential protection for casual players. Light and
                                 efficient.</p>
                             <div class="card-footer">
@@ -582,6 +582,9 @@
             cards.eq(middleIndex).addClass('stack-active');
             cards.eq(backIndex).addClass('stack-middle');
             cards.eq(hiddenIndex).addClass('stack-back');
+
+            // Update currentIndex for the next shuffle
+            // currentIndex = middleIndex; // Already set above
 
             // Reset the exited card classes after animation
             setTimeout(() => {
