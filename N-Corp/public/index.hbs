@@ -356,13 +356,34 @@
         height: 440px;
         border-radius: 2rem;
         overflow: visible;
-        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.8s ease, filter 0.8s ease, opacity 0.8s ease;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(220, 38, 38, 0.08);
         background: #0a0a0a;
         border: 1px solid rgba(220, 38, 38, 0.15);
         transform-origin: center top;
         perspective: 1200px;
+    }
+
+    .product-card::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(45deg, transparent, rgba(220, 38, 38, 0.3), transparent);
+        border-radius: inherit;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+
+    .product-card.stack-active::before {
+        opacity: 1;
+        animation: card-glow 3s linear infinite;
+    }
+
+    @keyframes card-glow {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
     }
 
     .product-card-inner {
@@ -390,14 +411,24 @@
         top: -10%;
         object-fit: cover;
         opacity: 0.35;
-        transition: transform 0.2s ease-out;
+        transition: transform 0.5s ease;
         will-change: transform;
+    }
+
+    .product-card.stack-active .card-bg {
+        opacity: 0.6;
+        animation: bg-pulse 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes bg-pulse {
+        0% { transform: scale(1) rotate(0deg); }
+        100% { transform: scale(1.1) rotate(1deg); }
     }
 
     .card-content {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.95) 15%, transparent 60%);
+        background: linear-gradient(to top, rgba(0,0,0,1) 10%, rgba(0,0,0,0.4) 50%, transparent 100%);
         padding: 3rem;
         display: flex;
         flex-direction: column;
@@ -416,6 +447,7 @@
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 0.1em;
+        box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
     }
 
     .card-title {
@@ -425,87 +457,92 @@
         font-size: clamp(2rem, 4vw, 3.25rem);
         text-transform: uppercase;
         margin-bottom: 0.5rem;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .card-desc {
-        color: #9ca3af;
+        color: #d1d5db;
         font-size: 1rem;
         margin-bottom: 1.5rem;
         max-width: 420px;
+        line-height: 1.5;
     }
 
     .card-footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-top: 1.5rem;
     }
 
     .card-price {
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         font-weight: 900;
+        display: flex;
+        flex-direction: column;
     }
 
     .card-price span {
-        font-size: 0.875rem;
-        color: #6b7280;
-        font-weight: 400;
+        font-size: 0.75rem;
+        color: #9ca3af;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .card-next-btn {
-        width: 3rem;
-        height: 3rem;
+        width: 3.5rem;
+        height: 3.5rem;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
+        background: #dc2626;
         border: 1px solid rgba(255, 255, 255, 0.1);
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
     }
 
     /* STACK POSITIONS */
     .stack-active {
         z-index: 30;
-        transform: translateX(-50%) translateY(0) scale(1);
+        transform: translateX(-50%) translateY(0) scale(1) rotate(0deg);
         opacity: 1;
         filter: blur(0);
     }
 
     .stack-middle {
         z-index: 20;
-        transform: translateX(-50%) translateY(100px) scale(0.9);
-        opacity: 0.7;
+        transform: translateX(-50%) translateY(60px) scale(0.92) rotate(-1deg);
+        opacity: 0.8;
         filter: blur(1px);
     }
 
     .stack-back {
         z-index: 10;
-        transform: translateX(-50%) translateY(200px) scale(0.8);
-        opacity: 0.4;
-        filter: blur(2px);
+        transform: translateX(-50%) translateY(120px) scale(0.85) rotate(-2deg);
+        opacity: 0.5;
+        filter: blur(3px);
     }
 
     .stack-exit {
         z-index: 40;
-        transform: translateX(150%) translateY(-80px) rotate(20deg) scale(0.9);
+        transform: translateX(150%) translateY(-100px) rotate(30deg) scale(0.8);
         opacity: 0;
-        filter: blur(8px);
+        filter: blur(15px);
         pointer-events: none;
     }
 
     .product-card.stack-active:hover {
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(220, 38, 38, 0.15);
-    }
-
-    .product-card:hover .card-bg {
-        transform: scale(1.12);
+        transform: translateX(-50%) translateY(-10px) scale(1.02);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(220, 38, 38, 0.2);
     }
 
     .product-card:hover .card-next-btn {
-        background: #dc2626;
-        border-color: #dc2626;
-        transform: scale(1.1);
+        transform: rotate(90deg) scale(1.1);
+        background: #ef4444;
     }
 </style>
 
@@ -525,44 +562,58 @@
         // PRODUCT SHUFFLE LOGIC
         const cards = $('.product-card');
         let currentIndex = 0;
+        let shuffleInterval;
 
         function shuffleCards() {
-            const currentCard = $(cards[currentIndex]);
-            const middleIndex = (currentIndex + 1) % cards.length;
-            const backIndex = (currentIndex + 2) % cards.length;
-            const hiddenIndex = (currentIndex + 3) % cards.length;
-
+            const currentCard = cards.eq(currentIndex);
+            
             // Remove all classes first
             cards.removeClass('stack-active stack-middle stack-back stack-exit');
 
             // 1. Exit current active card (Fly out)
             currentCard.addClass('stack-exit');
 
-            // 2. Bring middle to active
-            $(cards[middleIndex]).addClass('stack-active');
+            currentIndex = (currentIndex + 1) % cards.length;
+            const middleIndex = currentIndex;
+            const backIndex = (currentIndex + 1) % cards.length;
+            const hiddenIndex = (currentIndex + 2) % cards.length;
 
-            // 3. Bring first back to middle
-            $(cards[backIndex]).addClass('stack-middle');
+            // 2. Set new positions
+            cards.eq(middleIndex).addClass('stack-active');
+            cards.eq(backIndex).addClass('stack-middle');
+            cards.eq(hiddenIndex).addClass('stack-back');
 
-            // 4. Prepare second back card
-            $(cards[hiddenIndex]).addClass('stack-back');
-
-            // 5. Reset the exited card to back
+            // Reset the exited card classes after animation
             setTimeout(() => {
-                currentCard.removeClass('stack-exit').addClass('stack-back');
-                currentIndex = middleIndex;
+                currentCard.removeClass('stack-exit');
+                if (!currentCard.hasClass('stack-active') && !currentCard.hasClass('stack-middle')) {
+                    currentCard.addClass('stack-back');
+                }
             }, 800);
         }
 
-        // Auto Shuffle – cards automatically change every 3 seconds
-        let shuffleInterval = setInterval(shuffleCards, 3000);
+        // Auto Shuffle – cards automatically change every 5 seconds
+        function startAutoShuffle() {
+            stopAutoShuffle();
+            shuffleInterval = setInterval(shuffleCards, 5000);
+        }
+
+        function stopAutoShuffle() {
+            if (shuffleInterval) clearInterval(shuffleInterval);
+        }
 
         // Click Trigger – click card to go to next immediately
         $('.product-card').click(function () {
-            clearInterval(shuffleInterval);
             shuffleCards();
-            shuffleInterval = setInterval(shuffleCards, 3000);
+            startAutoShuffle(); // Reset timer on manual click
         });
+
+        // Pause on hover
+        $('#product-stack').on('mouseenter', stopAutoShuffle).on('mouseleave', startAutoShuffle);
+
+        // Start initial timer
+        startAutoShuffle();
+    });
 
         // 3D Tilt + Image Parallax on active product card (mouse follow, image moves with depth)
         let cardTiltFrame;
