@@ -17,13 +17,16 @@
             <div class="relative w-full flex flex-col items-center justify-center animate-fade-in-up"
                 style="animation-delay: 0.2s;">
                 <h1 id="scramble-title"
-                    class="font-black text-[clamp(4rem,15vw,13rem)] leading-none tracking-tighter text-white flex items-center justify-center filter drop-shadow-[0_0_50px_rgba(255,255,255,0.1)]">
-                    <span class="falling-char inline-block" style="--delay: 0s;">N</span>
+                    class="font-black text-[clamp(4rem,15vw,13rem)] leading-none tracking-tighter text-white flex items-center justify-center filter drop-shadow-[0_0_50px_rgba(255,255,255,0.1)] relative group">
+                    <span class="falling-char inline-block hover:text-red-600 transition-colors duration-300 cursor-default" style="--delay: 0s;">N</span>
                     <span class="inline-block w-[0.2em]"></span>
-                    <span class="falling-char inline-block" style="--delay: 0.1s;">C</span>
-                    <span class="falling-char inline-block" style="--delay: 0.2s;">O</span>
-                    <span class="falling-char inline-block" style="--delay: 0.3s;">R</span>
-                    <span class="falling-char inline-block" style="--delay: 0.4s;">P</span>
+                    <span class="falling-char inline-block hover:text-red-600 transition-colors duration-300 cursor-default" style="--delay: 0.1s;">C</span>
+                    <span class="falling-char inline-block hover:text-red-600 transition-colors duration-300 cursor-default" style="--delay: 0.2s;">O</span>
+                    <span class="falling-char inline-block hover:text-red-600 transition-colors duration-300 cursor-default" style="--delay: 0.3s;">R</span>
+                    <span class="falling-char inline-block hover:text-red-600 transition-colors duration-300 cursor-default" style="--delay: 0.4s;">P</span>
+                    
+                    <!-- Floating Glow Behind Title -->
+                    <div class="absolute inset-0 -z-10 bg-red-600/20 blur-[120px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </h1>
             </div>
 
@@ -64,7 +67,7 @@
     <section class="py-32 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="mb-24">
-                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-4">
+                <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-4 glitch-hover" data-text="PREMIUM CHEATS">
                     PREMIUM <span class="text-red-600 drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]">CHEATS</span>
                 </h2>
                 <div class="w-24 h-1 bg-red-600 mx-auto rounded-full"></div>
