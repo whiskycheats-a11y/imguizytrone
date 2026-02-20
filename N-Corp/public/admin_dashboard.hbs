@@ -1,0 +1,197 @@
+<div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+        <div>
+            <h1 class="text-4xl font-extrabold text-white tracking-tight uppercase mb-1">Admin <span
+                    class="text-sky-600">Command Center</span></h1>
+            <p class="text-gray-500 font-medium uppercase tracking-[0.2em] text-[10px]">Manage system assets and user
+                permissions</p>
+        </div>
+        <div class="flex gap-4">
+            <button onclick="$('#create-modal').removeClass('hidden')"
+                class="px-5 py-2.5 bg-sky-600 rounded-lg text-white font-bold text-[11px] tracking-widest uppercase hover:bg-sky-500 transition-all">New
+                Asset</button>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Stats Card -->
+        <div class="md:col-span-1 space-y-8">
+            <div class="glass-card p-6 rounded-2xl border border-white/5">
+                <h3 class="text-gray-500 font-bold text-[10px] uppercase tracking-widest mb-6 px-1">System Health</h3>
+                <div class="space-y-6">
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm font-bold text-gray-400">Database</span>
+                        <span class="text-lg font-black text-green-500 uppercase">Online</span>
+                    </div>
+                    <div class="flex justify-between items-end">
+                        <span class="text-sm font-bold text-gray-400">Server Load</span>
+                        <span class="text-lg font-black text-white">12%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 rounded-2xl border border-white/5">
+                <h3 class="text-gray-500 font-bold text-[10px] uppercase tracking-widest mb-6 px-1">Quick Actions</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <button
+                        class="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-sky-600/30 transition-all group">
+                        <span class="text-white font-black text-[10px] uppercase mb-1">UID Bypass</span>
+                        <span class="text-[8px] text-gray-500 font-bold uppercase tracking-widest">Manage</span>
+                    </button>
+                    <button
+                        class="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-sky-600/30 transition-all group">
+                        <span class="text-white font-black text-[10px] uppercase mb-1">Users</span>
+                        <span class="text-[8px] text-gray-500 font-bold uppercase tracking-widest">Lookup</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="md:col-span-2 space-y-8">
+            <div class="glass-card p-8 rounded-2xl border border-white/5 min-h-[400px]">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-white font-bold text-base uppercase tracking-wider">Global Assets List</h3>
+                </div>
+
+                <div class="space-y-4" id="asset-list">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Modal -->
+<div id="create-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="$('#create-modal').addClass('hidden')"></div>
+    <div class="relative glass-card p-10 rounded-[2.5rem] border border-white/10 w-full max-w-md shadow-2xl">
+        <h2 class="text-2xl font-black text-white mb-6 uppercase italic">Create New Asset</h2>
+        <form id="create-form" class="space-y-4">
+            <div>
+                <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Asset Type</label>
+                <select id="asset-type"
+                    class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-sky-600/50 outline-none mt-2 cursor-pointer">
+                    <option value="key">UID Bypass</option>
+                    <option value="user">User Account (User/Pass)</option>
+                </select>
+            </div>
+            <div id="role-select" class="hidden">
+                <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Target Role</label>
+                <select id="asset-role"
+                    class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-sky-600/50 outline-none mt-2 cursor-pointer">
+                    <option value="seller">Seller</option>
+                    <option value="streamer">Streamer</option>
+                </select>
+            </div>
+            <div>
+                <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest" id="value-label">UID
+                    Bypass
+                    Value</label>
+                <input type="text" id="asset-value" placeholder="XXXX-XXXX-XXXX"
+                    class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-sky-600/50 outline-none mt-2">
+            </div>
+            <div id="pass-field" class="hidden">
+                <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Secure Password</label>
+                <input type="password" id="asset-pass" placeholder="••••••••"
+                    class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-sky-600/50 outline-none mt-2">
+            </div>
+            <div>
+                <label class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Validity Duration</label>
+                <select id="asset-duration"
+                    class="w-full bg-black/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:border-sky-600/50 outline-none mt-2 cursor-pointer">
+                    <option value="1">24 Hours</option>
+                    <option value="7">7 Days</option>
+                    <option value="30" selected>30 Days</option>
+                    <option value="365">1 Year</option>
+                    <option value="lifetime">Lifetime</option>
+                </select>
+            </div>
+            <button type="submit"
+                class="w-full py-4 bg-sky-600 rounded-xl text-white font-black uppercase tracking-widest text-xs hover:bg-sky-500 transition-all mt-4">Generate
+                Asset</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        function loadAssets() {
+            $.get('/api/admin/list', function (res) {
+                if (!res.status) return;
+                let html = `
+                <div class="grid grid-cols-4 px-4 py-2 text-[8px] font-black text-gray-600 uppercase tracking-[0.2em] border-b border-white/5">
+                    <div>Identity</div>
+                    <div>Role</div>
+                    <div>Status</div>
+                    <div class="text-right">Action</div>
+                </div>`;
+
+                res.data.keys.forEach(k => {
+                    const status = k.validTill && k.validTill < Date.now() ? 'Expired' : 'Active';
+                    const exp = k.validTill ? new Date(k.validTill).toLocaleDateString() : 'Lifetime';
+                    html += renderRow(k.key, 'UID Bypass', status, 'key', k._id, exp);
+                });
+                res.data.users.forEach(u => {
+                    const status = u.validTill && u.validTill < Date.now() ? 'Expired' : 'Active';
+                    const exp = u.validTill ? new Date(u.validTill).toLocaleDateString() : 'Lifetime';
+                    html += renderRow(u.user, u.role, status, 'user', u._id, exp);
+                });
+                $('#asset-list').html(html);
+            });
+        }
+
+        function renderRow(identity, role, status, type, id, exp) {
+            const statusColor = status === 'Active' ? 'text-green-500' : 'text-red-500';
+            return `
+            <div class="grid grid-cols-4 px-5 py-4 rounded-xl bg-white/[0.02] items-center border border-white/0 hover:bg-white/[0.04] transition-all group">
+                <div class="flex flex-col">
+                    <span class="text-[12px] font-semibold text-white">${identity}</span>
+                    <span class="text-[9px] text-gray-500 font-medium uppercase tracking-widest mt-1">Exp: ${exp}</span>
+                </div>
+                <div><span class="px-2.5 py-1 bg-sky-600/10 text-sky-500 rounded text-[9px] font-bold uppercase tracking-wider">${role}</span></div>
+                <div><span class="text-[9px] font-bold ${statusColor} uppercase tracking-widest">${status}</span></div>
+                <div class="text-right">
+                    <button onclick="deleteAsset('${type}', '${id}')" class="text-gray-600 hover:text-sky-500 transition-colors text-[10px] font-bold tracking-wider">DELETE</button>
+                </div>
+            </div>`;
+        }
+
+        window.deleteAsset = function (type, id) {
+            if (!confirm('Delete this asset?')) return;
+            $.post(`/api/admin/delete?type=${type}&id=${id}`, function () {
+                loadAssets();
+            });
+        }
+
+        $('#asset-type').change(function () {
+            const val = $(this).val();
+            if (val === 'user') {
+                $('#role-select, #pass-field').removeClass('hidden');
+                $('#value-label').text('Username');
+                $('#asset-value').attr('placeholder', 'New User');
+            } else {
+                $('#role-select, #pass-field').addClass('hidden');
+                $('#value-label').text('UID Bypass Value');
+                $('#asset-value').attr('placeholder', 'XXXX-XXXX-XXXX');
+            }
+        });
+
+        $('#create-form').submit(function (e) {
+            e.preventDefault();
+            const type = $('#asset-type').val();
+            const role = $('#asset-role').val();
+            const value = $('#asset-value').val();
+            const pass = $('#asset-pass').val();
+            const duration = $('#asset-duration').val();
+
+            $.post(`/api/admin/create?type=${type}&role=${role}&value=${value}&pass=${pass}&duration=${duration}`, function () {
+                $('#create-modal').addClass('hidden');
+                $('#create-form')[0].reset();
+                loadAssets();
+            });
+        });
+
+        loadAssets();
+    });
+</script>

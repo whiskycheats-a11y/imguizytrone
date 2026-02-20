@@ -1,159 +1,355 @@
-<div class="min-h-screen bg-black text-white p-6 md:p-12 animate-in fade-in duration-700 selection:bg-red-600/30">
-    <div class="max-w-7xl mx-auto space-y-12">
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-12">
-            <div class="space-y-4">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600/10 border border-red-600/20 text-[10px] font-black uppercase tracking-widest text-red-500">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-                    </span>
-                    Control Center Active
-                </div>
-                <h1 class="text-6xl font-black tracking-tighter uppercase italic">User<span class="text-red-600">.</span>Panel</h1>
-                <p class="text-gray-500 font-medium max-w-lg leading-relaxed">Manage your active licenses, system status, and exclusive tools from your encrypted command center.</p>
-            </div>
-            <div class="flex items-center gap-4">
-                <div class="text-right hidden sm:block">
-                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Connected as</p>
-                    <p class="text-sm font-black text-white uppercase italic">Elite Member</p>
-                </div>
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-red-600 to-red-900 flex items-center justify-center shadow-[0_0_20px_rgba(220,38,38,0.3)] border border-white/10 group cursor-pointer hover:scale-105 transition-transform">
-                    <svg class="w-6 h-6 text-white group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
 
-        <!-- Stats Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4 hover:border-red-600/30 transition-all group relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="flex items-center justify-between relative z-10">
-                    <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black text-green-500 uppercase tracking-widest bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">Active</span>
-                </div>
-                <div class="relative z-10">
-                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Active Licenses</p>
-                    <p class="text-4xl font-black mt-1">02</p>
-                </div>
-            </div>
-            
-            <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4 hover:border-red-600/30 transition-all group relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="flex items-center justify-between relative z-10">
-                    <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <span class="text-[10px] font-black text-red-500 uppercase tracking-widest bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">Secure</span>
-                </div>
-                <div class="relative z-10">
-                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">System Status</p>
-                    <p class="text-4xl font-black mt-1 uppercase italic tracking-tight">Stable</p>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N Corp. - Dashboard</title>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/tailwindcss.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Regular';
+            src: url(/fonts/Rajdhani-Regular.ttf);
+        }
 
-            <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2rem] p-8 space-y-4 hover:border-red-600/30 transition-all group relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="flex items-center justify-between relative z-10">
-                    <div class="w-12 h-12 rounded-xl bg-red-600/10 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    </div>
-                </div>
-                <div class="relative z-10">
-                    <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Time Remaining</p>
-                    <p class="text-4xl font-black mt-1">28<span class="text-lg text-gray-500 ml-1">Days</span></p>
-                </div>
-            </div>
-        </div>
+        :root {
+            --bg-color: #050505;
+            --primary-sky: #0ea5e9;
+            --dark-sky: #0c4a6e;
+            --text-color: #e5e7eb;
+            --glass-bg: rgba(10, 10, 10, 0.6);
+            --neon-glow: 0 0 15px rgba(14, 165, 233, 0.3);
+        }
 
-        <!-- Main Content Area -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-20">
-            <!-- Left: Quick Actions -->
-            <div class="lg:col-span-2 space-y-6">
-                <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl">
-                    <div class="p-8 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
-                        <h3 class="text-xl font-black uppercase tracking-tight italic">Available Software</h3>
-                        <button class="text-[10px] font-black text-red-500 uppercase tracking-widest hover:text-red-400 transition-colors">Catalog</button>
-                    </div>
-                    <div class="p-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-6 bg-white/5 border border-white/5 rounded-2xl flex items-center gap-6 hover:bg-white/10 transition-all cursor-pointer group hover:border-red-600/20">
-                            <div class="w-16 h-16 rounded-2xl bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-red-600/20">
-                                <img src="/image/logo.png" class="w-10 h-10 opacity-60 group-hover:opacity-100 group-hover:invert transition-all" alt="">
-                            </div>
-                            <div>
-                                <p class="font-black uppercase text-base tracking-wide text-white">Phantom Core</p>
-                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">v2.4.1 • <span class="text-green-500">Undetected</span></p>
-                            </div>
-                        </div>
-                        <div class="p-6 bg-white/5 border border-white/5 rounded-2xl flex items-center gap-6 hover:bg-white/10 transition-all cursor-pointer group hover:border-red-600/20">
-                            <div class="w-16 h-16 rounded-2xl bg-red-600/10 border border-red-600/20 flex items-center justify-center text-red-500 group-hover:bg-red-600 group-hover:text-white transition-all shadow-lg group-hover:shadow-red-600/20">
-                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            </div>
-                            <div>
-                                <p class="font-black uppercase text-base tracking-wide text-white">Shield Bypass</p>
-                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Active Protection</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        body {
+            font-family: 'Regular', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
 
-                <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2.5rem] p-8 flex flex-col sm:flex-row items-center justify-between gap-6 hover:border-white/20 transition-all group">
-                    <div class="flex items-center gap-6">
-                        <div class="w-16 h-16 rounded-2xl bg-red-600 flex items-center justify-center shadow-[0_0_30px_rgba(220,38,38,0.4)] group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        </div>
-                        <div>
-                            <p class="font-black uppercase text-xl tracking-tight italic">Download Launcher</p>
-                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">Latest Stable Build (v4.0.2)</p>
-                        </div>
-                    </div>
-                    <button class="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase text-[11px] tracking-[0.25em] rounded-2xl hover:bg-gray-200 transition-all active:scale-95 shadow-xl">Initialize Fetch</button>
-                </div>
-            </div>
+        .glass-card {
+            background: linear-gradient(135deg, rgba(10, 15, 20, 0.95), rgba(5, 10, 15, 0.98));
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-            <!-- Right: Support & Community -->
-            <div class="space-y-6">
-                <div class="backdrop-blur-xl bg-red-600/5 border border-red-600/20 rounded-[2.5rem] p-8 space-y-6 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:rotate-12 transition-transform">
-                        <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.486 13.486 0 0 0-.585 1.205 17.513 17.513 0 0 0-5.545 0c-.201-.43-.41-.837-.62-1.205a.076.076 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.076.076 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-sky);
+            box-shadow: 0 20px 40px -10px rgba(14, 165, 233, 0.4);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-sky-600/30">
+    <div class="min-h-screen p-6 md:p-12 animate-in fade-in duration-700">
+        <div class="max-w-7xl mx-auto space-y-12">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-12">
+                <div class="space-y-4">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-600/10 border border-sky-600/20 text-[10px] font-black uppercase tracking-widest text-sky-500">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                        </span>
+                        Control Center Active
                     </div>
-                    <div>
-                        <h4 class="text-2xl font-black uppercase tracking-tight italic text-white">Elite Hub</h4>
-                        <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">Authorized Area Only</p>
+                    <a href="/" class="block">
+                        <h1
+                            class="text-6xl font-black tracking-tighter uppercase italic hover:text-sky-500 transition-colors">
+                            User<span class="text-sky-600">.</span>Panel</h1>
+                    </a>
+                    <p class="text-gray-500 font-medium max-w-lg leading-relaxed">Manage your active licenses, system
+                        status, and exclusive tools from your encrypted command center.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-[10px] font-black text-gray-500 uppercase tracking-widest">Connected as</p>
+                        <p class="text-sm font-black text-white uppercase italic">Elite Member</p>
                     </div>
-                    <p class="text-gray-400 text-sm font-medium leading-relaxed">Connect with thousands of elite users. Get instant support and early access to experimental builds.</p>
-                    <a href="https://discord.gg/n-corp" target="_blank" class="flex items-center justify-center gap-4 w-full py-5 bg-[#5865F2] rounded-2xl text-white font-black uppercase text-[11px] tracking-[0.25em] shadow-[0_0_30px_rgba(88,101,242,0.3)] hover:scale-[1.02] transition-all relative overflow-hidden group/discord">
-                        <div class="absolute inset-0 bg-white/10 translate-y-full group-hover/discord:translate-y-0 transition-transform duration-300"></div>
-                        <span class="relative z-10">Sync Protocol</span>
+                    <a href="/logout"
+                        class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-600 to-sky-900 flex items-center justify-center shadow-[0_0_20px_rgba(14,165,233,0.3)] border border-white/10 group cursor-pointer hover:scale-105 transition-transform">
+                        <svg class="w-6 h-6 text-white group-hover:rotate-12 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                            </path>
+                        </svg>
                     </a>
                 </div>
+            </div>
 
-                <div class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-[2.5rem] p-8 space-y-6 shadow-xl">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest">System Feed</h4>
-                        <div class="flex gap-1">
-                            <div class="w-1 h-1 rounded-full bg-red-600 animate-pulse"></div>
-                            <div class="w-1 h-1 rounded-full bg-red-600 animate-pulse" style="animation-delay: 0.2s"></div>
-                            <div class="w-1 h-1 rounded-full bg-red-600 animate-pulse" style="animation-delay: 0.4s"></div>
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Stat 1 -->
+                <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-sky-600/10 flex items-center justify-center text-sky-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+                                </path>
+                            </svg>
                         </div>
+                        <span
+                            class="text-[10px] font-black text-green-500 uppercase tracking-widest bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">Active</span>
                     </div>
-                    <div class="space-y-4">
-                        <div class="flex gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all">
-                            <div class="w-2.5 h-2.5 rounded-full bg-red-600 mt-1.5 shrink-0 shadow-[0_0_10px_rgba(220,38,38,0.8)]"></div>
-                            <div class="space-y-1.5">
-                                <p class="text-[10px] font-black uppercase tracking-widest text-red-500">Security Update</p>
-                                <p class="text-xs font-bold text-gray-300">Vanguard bypass updated. All systems stable.</p>
-                                <p class="text-[8px] font-black text-gray-600 uppercase">12 Minutes Ago</p>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Active UID Bypass</p>
+                        <p id="uid-count" class="text-3xl font-extrabold mt-1">00</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-sky-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-sky-600/10 flex items-center justify-center text-sky-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <span
+                            class="text-[10px] font-black text-sky-500 uppercase tracking-widest bg-sky-500/10 px-3 py-1 rounded-full border border-sky-500/20">Secure</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">System Status</p>
+                        <p class="text-3xl font-extrabold mt-1 uppercase italic tracking-tight">Stable</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-sky-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-sky-600/10 flex items-center justify-center text-sky-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span
+                            class="text-[10px] font-black text-purple-500 uppercase tracking-widest bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">Premium</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Time Remaining</p>
+                        <p id="user-expiry" class="text-3xl font-extrabold mt-1 uppercase tracking-tight">Lifetime</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-white/5 relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-sky-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-sky-600/10 flex items-center justify-center text-sky-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V3m0 9v3m0 0v3m0-3c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <span
+                            class="text-[10px] font-black text-orange-500 uppercase tracking-widest bg-orange-500/10 px-3 py-1 rounded-full border border-orange-500/20">Active</span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Total Deployments</p>
+                        <p class="text-3xl font-extrabold mt-1">1,200</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10">
+                <!-- Left: Quick Actions -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Left: Whitelist Manager -->
+                    <div class="glass-card rounded-[2.5rem] overflow-hidden shadow-2xl p-8 space-y-8">
+                        <div class="flex items-center justify-between border-b border-white/5 pb-6">
+                            <div>
+                                <h3 class="text-2xl font-black uppercase tracking-tight italic">Whitelist Intelligence
+                                </h3>
+                                <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] mt-1">Manage
+                                    core system access permissions</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button onclick="loadWhitelist()"
+                                    class="p-3 bg-white/5 rounded-xl border border-white/10 text-sky-500 hover:bg-sky-600/10 transition-all">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                        </path>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
-                        <div class="flex gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all">
-                            <div class="w-2.5 h-2.5 rounded-full bg-blue-500 mt-1.5 shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.8)]"></div>
-                            <div class="space-y-1.5">
-                                <p class="text-[10px] font-black uppercase tracking-widest text-blue-500">Feature Release</p>
-                                <p class="text-xs font-bold text-gray-300">Phantom Core v2.4.1 is now live for all users.</p>
-                                <p class="text-[8px] font-black text-gray-600 uppercase">2 Hours Ago</p>
+
+                        <!-- Add New Section -->
+                        <div class="space-y-6">
+                            <h4
+                                class="text-xs font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-sky-600"></span>
+                                Add New Intelligence
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Universal
+                                        ID *</label>
+                                    <input id="w-uid" type="text" placeholder="Enter UID"
+                                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm font-bold focus:border-sky-600/50 outline-none transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Alias
+                                        (Optional)</label>
+                                    <input id="w-name" type="text" placeholder="Enter name"
+                                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm font-bold focus:border-sky-600/50 outline-none transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Deployment
+                                        Region</label>
+                                    <input id="w-region" type="text" placeholder="Enter region"
+                                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm font-bold focus:border-sky-600/50 outline-none transition-all">
+                                </div>
+                                <div class="space-y-2">
+                                    <label
+                                        class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-1">Expiry
+                                        Protocol</label>
+                                    <input id="w-expiry" type="date"
+                                        class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm font-bold focus:border-sky-600/50 outline-none transition-all text-gray-400">
+                                </div>
+                            </div>
+                            <button onclick="addWhitelist()"
+                                class="w-full py-4 bg-sky-600 rounded-2xl text-white font-black uppercase text-xs tracking-[0.2em] shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:bg-sky-500 transition-all active:scale-[0.98]">
+                                Authorize Deployment
+                            </button>
+                        </div>
+
+                        <!-- Table Section -->
+                        <div class="space-y-8 pt-4">
+                            <h4
+                                class="text-sm font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-3">
+                                <span
+                                    class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
+                                Authorized Personnel Database
+                            </h4>
+                            <div
+                                class="overflow-y-auto max-h-[450px] rounded-[2rem] border border-white/5 bg-white/[0.01] custom-scrollbar">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="sticky top-0 z-10 bg-[#060606]">
+                                        <tr class="bg-white/[0.03]">
+                                            <th
+                                                class="px-8 py-5 text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">
+                                                Deployment Identity</th>
+                                            <th
+                                                class="px-8 py-5 text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">
+                                                Clearance Info</th>
+                                            <th
+                                                class="px-8 py-5 text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">
+                                                Status</th>
+                                            <th
+                                                class="px-8 py-5 text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] text-right">
+                                                Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="whitelist-tbl" class="divide-y divide-white/5">
+                                        <!-- Entries will load here -->
+                                        <tr>
+                                            <td colspan="4" class="px-8 py-20 text-center">
+                                                <div class="flex flex-col items-center gap-4">
+                                                    <div
+                                                        class="w-10 h-10 border-4 border-sky-600/20 border-t-sky-600 rounded-full animate-spin">
+                                                    </div>
+                                                    <p
+                                                        class="text-[11px] font-black text-gray-600 uppercase tracking-[0.4em]">
+                                                        Synchronizing Records...</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Support & Community -->
+                <div class="space-y-6">
+                    <div
+                        class="glass-card bg-sky-600/5 border border-sky-600/20 rounded-[2.5rem] p-8 space-y-6 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:rotate-12 transition-transform">
+                            <svg class="w-32 h-32" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.486 13.486 0 0 0-.585 1.205 17.513 17.513 0 0 0-5.545 0c-.201-.43-.41-.837-.62-1.205a.076.076 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.1 14.1 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.076.076 0 0 0-.04.106c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="text-2xl font-black uppercase tracking-tight italic text-white">Elite Hub</h4>
+                            <p class="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mt-1">Authorized
+                                Area
+                                Only</p>
+                        </div>
+                        <p class="text-gray-400 text-sm font-medium leading-relaxed">Connect with thousands of elite
+                            users.
+                            Get instant support and early access to experimental builds.</p>
+                        <a href="https://discord.gg/n-corp" target="_blank"
+                            class="flex items-center justify-center gap-4 w-full py-5 bg-[#5865F2] rounded-2xl text-white font-black uppercase text-[11px] tracking-[0.25em] shadow-[0_0_30px_rgba(88,101,242,0.3)] hover:scale-[1.02] transition-all relative overflow-hidden group/discord">
+                            <div
+                                class="absolute inset-0 bg-white/10 translate-y-full group-hover/discord:translate-y-0 transition-transform duration-300">
+                            </div>
+                            <span class="relative z-10">Sync Protocol</span>
+                        </a>
+                    </div>
+
+                    <div class="glass-card rounded-[2.5rem] p-8 space-y-6 shadow-xl overflow-hidden">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-[10px] font-black text-gray-500 uppercase tracking-widest">System Feed</h4>
+                            <div class="flex gap-1">
+                                <div class="w-1 h-1 rounded-full bg-sky-600 animate-pulse"></div>
+                                <div class="w-1 h-1 rounded-full bg-sky-600 animate-pulse"
+                                    style="animation-delay: 0.2s">
+                                </div>
+                                <div class="w-1 h-1 rounded-full bg-sky-600 animate-pulse"
+                                    style="animation-delay: 0.4s">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div
+                                class="flex gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all">
+                                <div
+                                    class="w-2.5 h-2.5 rounded-full bg-sky-600 mt-1.5 shrink-0 shadow-[0_0_10px_rgba(14,165,233,0.8)]">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <p class="text-[10px] font-black uppercase tracking-widest text-sky-500">Security
+                                        Update</p>
+                                    <p class="text-xs font-bold text-gray-300">Vanguard bypass updated. All systems
+                                        stable.</p>
+                                    <p class="text-[8px] font-black text-gray-600 uppercase">12 Minutes Ago</p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex gap-5 p-5 bg-white/5 rounded-2xl border border-white/5 group hover:bg-white/10 transition-all">
+                                <div
+                                    class="w-2.5 h-2.5 rounded-full bg-blue-500 mt-1.5 shrink-0 shadow-[0_0_10px_rgba(59,130,246,0.8)]">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <p class="text-[10px] font-black uppercase tracking-widest text-blue-500">Feature
+                                        Release</p>
+                                    <p class="text-xs font-bold text-gray-300">Phantom Core v2.4.1 is now live for all
+                                        users.</p>
+                                    <p class="text-[8px] font-black text-gray-600 uppercase">2 Hours Ago</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -161,4 +357,90 @@
             </div>
         </div>
     </div>
-</div>
+
+    <script>
+        function loadWhitelist() {
+            $.get('/api/whitelist/list', (res) => {
+                if (res.status) {
+                    $('#whitelist-tbl').empty();
+                    // Update record count
+                    const count = res.data.length;
+                    $('#uid-count').text(count < 10 ? '0' + count : count);
+
+                    if (res.data.length === 0) {
+                        $('#whitelist-tbl').append(`<tr><td colspan="4" class="px-8 py-16 text-center text-gray-600 font-bold uppercase text-[11px] tracking-[0.3em]">No operational records found in database</td></tr>`);
+                    } else {
+                        res.data.forEach(i => {
+                            $('#whitelist-tbl').append(`
+                                <tr class="hover:bg-white/[0.03] transition-colors group">
+                                    <td class="px-8 py-6">
+                                        <p class="text-base font-black text-white tracking-widest group-hover:text-sky-400 transition-colors">${i.uid}</p>
+                                        <p class="text-[9px] font-black text-gray-600 uppercase tracking-[0.1em] mt-1 italic">${i.region}</p>
+                                    </td>
+                                    <td class="px-8 py-6">
+                                        <p class="text-[11px] font-black text-gray-300 uppercase tracking-[0.15em]">${i.name}</p>
+                                        <p class="text-[9px] font-black text-gray-600 uppercase mt-1">Exp: ${i.expiry || 'PERMANENT'}</p>
+                                    </td>
+                                    <td class="px-8 py-6">
+                                        <span class="px-3 py-1.5 rounded-lg bg-green-500/10 text-green-500 text-[9px] font-black uppercase tracking-widest border border-green-500/20 shadow-[0_0_10px_rgba(34,197,94,0.1)]">${i.status}</span>
+                                    </td>
+                                    <td class="px-8 py-6 text-right">
+                                        <button onclick="deleteWhitelist('${i._id}')" class="p-3 bg-white/5 rounded-xl text-gray-600 hover:text-red-500 hover:bg-red-500/10 hover:border-red-500/30 border border-transparent transition-all">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            `);
+                        });
+                    }
+                }
+            });
+        }
+
+        function addWhitelist() {
+            const uid = $('#w-uid').val();
+            const name = $('#w-name').val();
+            const region = $('#w-region').val();
+            const expiry = $('#w-expiry').val();
+
+            if (!uid) return alert('UID Protocol Required');
+
+            $.post(`/api/whitelist/add?uid=${uid}&name=${name}&region=${region}&expiry=${expiry}`, (res) => {
+                if (res.status) {
+                    $('#w-uid, #w-name, #w-region, #w-expiry').val('');
+                    loadWhitelist();
+                }
+            });
+        }
+
+        function deleteWhitelist(id) {
+            if (confirm('Terminate intelligence clearance?')) {
+                $.post(`/api/whitelist/delete?id=${id}`, (res) => {
+                    if (res.status) loadWhitelist();
+                });
+            }
+        }
+
+        function loadUserInfo() {
+            $.get('/api/user/info', (res) => {
+                if (res.status && res.data.validTill) {
+                    const diff = res.data.validTill - Date.now();
+                    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                    if (days <= 0) {
+                        $('#user-expiry').text('Expired').addClass('text-red-500');
+                    } else {
+                        $('#user-expiry').text(days + ' Days');
+                    }
+                } else {
+                    $('#user-expiry').text('Lifetime');
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            loadUserInfo();
+            loadWhitelist();
+        });</script>
+</body>
+
+</html>

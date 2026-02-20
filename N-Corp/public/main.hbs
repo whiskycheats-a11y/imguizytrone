@@ -7,10 +7,12 @@
 
     <title>N Corp.{{#if title}} - {{title}}{{/if}}</title>
 
-    <script src="./js/jquery.js"></script>
-    <script src="./js/tailwindcss.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/tailwindcss.js"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
         @font-face {
             font-family: 'Regular';
             src: url(/fonts/Rajdhani-Regular.ttf);
@@ -18,13 +20,11 @@
 
         :root {
             --bg-color: #050505;
-            --primary-red: #dc2626;
-            /* Crimson Red 600 */
-            --dark-red: #7f1d1d;
-            /* Red 900 */
+            --primary-sky: #0ea5e9;
+            --dark-sky: #0c4a6e;
             --text-color: #e5e7eb;
             --glass-bg: rgba(10, 10, 10, 0.6);
-            --neon-glow: 0 0 15px rgba(220, 38, 38, 0.3);
+            --neon-glow: 0 0 15px rgba(14, 165, 233, 0.3);
         }
 
         html {
@@ -45,59 +45,40 @@
         }
 
         body {
-            font-family: 'Regular', 'Rajdhani', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            /* Enable 3D space */
-        }
-
-        body::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        body::-webkit-scrollbar-track {
-            background: #020202;
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background: #450a0a;
-            border-radius: 2px;
-            box-shadow: none;
-        }
-
-        body::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-red);
-            box-shadow: 0 0 5px var(--primary-red);
+            -webkit-font-smoothing: antialiased;
         }
 
         /* 3D Glass Card */
         .glass {
-            background: var(--glass-bg);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 15px rgba(220, 38, 38, 0.1);
+            background: rgba(10, 10, 10, 0.4);
+            border: 1px solid rgba(14, 165, 233, 0.15);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.2);
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass:hover {
-            box-shadow: 0 0 25px rgba(220, 38, 38, 0.2);
-            border-color: rgba(220, 38, 38, 0.5);
+            border-color: rgba(14, 165, 233, 0.3);
+            background: rgba(10, 10, 10, 0.5);
         }
 
         .glass-card {
-            background: linear-gradient(135deg, rgba(20, 10, 10, 0.95), rgba(10, 5, 5, 0.98));
-            border: 1px solid rgba(220, 38, 38, 0.3);
-            box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.2);
+            background: linear-gradient(135deg, rgba(15, 20, 25, 0.9), rgba(10, 12, 18, 0.95));
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
             transform: translateZ(0);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card:hover {
-            transform: translateZ(20px) scale(1.02);
-            box-shadow: 0 20px 40px -10px rgba(220, 38, 38, 0.4);
-            border-color: var(--primary-red);
+            transform: translateY(-5px) translateZ(10px);
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(14, 165, 233, 0.1);
         }
 
         .text-glow {
@@ -105,8 +86,8 @@
         }
 
         .neon-text {
-            color: var(--primary-red);
-            text-shadow: 0 0 5px var(--primary-red);
+            color: var(--primary-sky);
+            text-shadow: 0 0 5px var(--primary-sky);
         }
 
         .btn-3d {
@@ -141,11 +122,11 @@
 
             0%,
             100% {
-                text-shadow: 0 0 10px var(--primary-red), 0 0 20px var(--primary-red);
+                text-shadow: 0 0 10px var(--primary-sky), 0 0 20px var(--primary-sky);
             }
 
             50% {
-                text-shadow: 0 0 20px var(--primary-red), 0 0 40px var(--primary-red);
+                text-shadow: 0 0 20px var(--primary-sky), 0 0 40px var(--primary-sky);
             }
         }
 
@@ -180,7 +161,7 @@
             position: absolute;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
             filter: blur(150px);
             border-radius: 50%;
             will-change: transform;
@@ -195,7 +176,7 @@
         .blob-2 {
             bottom: -300px;
             right: -200px;
-            background: radial-gradient(circle, rgba(153, 27, 27, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(12, 74, 110, 0.15) 0%, transparent 70%);
             animation: drift-2 30s infinite alternate ease-in-out;
         }
 
@@ -204,7 +185,7 @@
             left: 50%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
             animation: drift-3 20s infinite alternate ease-in-out;
         }
 
@@ -259,8 +240,8 @@
             width: 100%;
             height: 200%;
             background-image:
-                linear-gradient(rgba(220, 38, 38, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(220, 38, 38, 0.08) 1px, transparent 1px);
+                linear-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(14, 165, 233, 0.08) 1px, transparent 1px);
             background-size: 50px 50px;
             perspective: 1000px;
             transform: rotateX(60deg) translateY(-30%);
@@ -275,7 +256,9 @@
             position: relative;
             display: inline-block;
         }
-        .glitch::before, .glitch::after {
+
+        .glitch::before,
+        .glitch::after {
             content: attr(data-text);
             position: absolute;
             top: 0;
@@ -284,19 +267,22 @@
             height: 100%;
             opacity: 0.8;
         }
+
         .glitch::before {
-            color: #ff0000;
+            color: #0ea5e9;
             z-index: -1;
             animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
         }
+
         .glitch::after {
             color: #00ffff;
             z-index: -2;
             animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse both infinite;
         }
+
         .glitch-hover:hover {
             animation: glitch-anim 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-            color: #ff0000;
+            color: #0ea5e9;
         }
 
         /* Responsive Fixes */
@@ -305,6 +291,7 @@
                 background-size: 30px 30px;
                 transform: rotateX(60deg) translateY(-10%);
             }
+
             .product-card {
                 height: 380px;
             }
@@ -374,7 +361,7 @@
             inset: 0;
             border: 2px solid transparent;
             border-radius: inherit;
-            background: linear-gradient(90deg, transparent, var(--primary-red), transparent) border-box;
+            background: linear-gradient(90deg, transparent, var(--primary-sky), transparent) border-box;
             mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
@@ -398,15 +385,44 @@
         .animate-in {
             animation: animate-in 0.5s ease-out forwards;
         }
+
         @keyframes animate-in {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .fade-in { animation: fade-in 0.5s ease-out forwards; }
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        .slide-in-from-top-4 { transform: translateY(-1rem); }
-        .slide-in-from-bottom-4 { transform: translateY(1rem); }
-        .zoom-in-95 { transform: scale(0.95); }
+
+        .fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-in-from-top-4 {
+            transform: translateY(-1rem);
+        }
+
+        .slide-in-from-bottom-4 {
+            transform: translateY(1rem);
+        }
+
+        .zoom-in-95 {
+            transform: scale(0.95);
+        }
 
         /* Logo Scan Effect */
         .logo-scan {
@@ -421,8 +437,8 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
-            box-shadow: 0 0 20px var(--primary-red);
+            background: linear-gradient(90deg, transparent, var(--primary-sky), transparent);
+            box-shadow: 0 0 20px var(--primary-sky);
             animation: scan-vertical 4s ease-in-out infinite;
             z-index: 2;
         }
@@ -444,7 +460,7 @@
         }
 
         .text-shimmer {
-            background: linear-gradient(90deg, #ffffff 0%, var(--primary-red) 50%, #ffffff 100%);
+            background: linear-gradient(90deg, #ffffff 0%, var(--primary-sky) 50%, #ffffff 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -476,51 +492,78 @@
         <div class="scanlines"></div>
         <div class="noise-overlay"></div>
         <div
-            class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-red-600/5 rounded-full blur-[100px] animate-float">
+            class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-sky-600/5 rounded-full blur-[100px] animate-float">
         </div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-crimson-600/5 rounded-full blur-[100px] animate-float"
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-sky-900/5 rounded-full blur-[100px] animate-float"
             style="animation-delay: -3s;"></div>
     </div>
 
     <header class="fixed w-full z-50 top-4 px-4 md:px-0">
         <div
-            class="max-w-5xl mx-auto h-16 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl flex items-center justify-between px-6 shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-red-600/20">
+            class="max-w-5xl mx-auto h-16 backdrop-blur-xl bg-black/40 border border-white/10 rounded-2xl flex items-center justify-between px-6 shadow-[0_0_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:border-sky-600/20">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2 group">
                 <div
-                    class="w-8 h-8 bg-red-600/10 border border-red-600/30 rounded-lg flex items-center justify-center group-hover:border-red-600/80 transition-colors duration-300">
+                    class="w-8 h-8 bg-sky-600/10 border border-sky-600/30 rounded-lg flex items-center justify-center group-hover:border-sky-600/80 transition-colors duration-300">
                     <span
-                        class="font-mono text-red-600 font-bold text-lg group-hover:text-red-400 group-hover:drop-shadow-[0_0_8px_rgba(220,38,38,0.8)]">N</span>
+                        class="font-mono text-sky-600 font-bold text-lg group-hover:text-sky-400 group-hover:drop-shadow-[0_0_8px_rgba(14, 165, 233, 0.8)]">N</span>
                 </div>
                 <span
-                    class="font-rajdhani font-bold text-xl tracking-wider text-white group-hover:text-red-400 transition-colors">CORP</span>
+                    class="font-rajdhani font-bold text-xl tracking-wider text-white group-hover:text-sky-400 transition-colors">CORP</span>
             </a>
 
             <!-- Desktop Nav (Centered) -->
             <nav class="hidden md:flex items-center gap-8">
+                {{#if isAdminSection}}
+                <a href="/admin/dashboard"
+                    class="text-[11px] font-black uppercase tracking-[0.2em] text-sky-500 hover:text-sky-400 transition-colors border-b-2 border-sky-600 pb-1">Admin
+                    Panel</a>
                 <a href="/"
-                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-red-500 transition-colors">Home</a>
+                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-white transition-colors">Client
+                    View</a>
+                {{else}}
+                <a href="/"
+                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-sky-500 transition-colors">Home</a>
                 <a href="/products"
-                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-red-500 transition-colors">Products</a>
-                <a href="https://discord.gg/n-corp" target="_blank"
-                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-red-500 transition-colors">Community</a>
-                <a href="/dashboard"
-                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-red-500 transition-colors">Status</a>
+                    class="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-sky-500 transition-colors">Products</a>
+
+                {{#unless isAdmin}}
+                <a href="/admin/login"
+                    class="text-[11px] font-black uppercase tracking-[0.2em] text-sky-600/60 hover:text-sky-500 transition-all border border-sky-600/20 px-2 py-1 rounded">Admin</a>
+                {{/unless}}
+                {{/if}}
             </nav>
 
             <!-- Auth Buttons (Right) -->
             <div class="hidden md:flex items-center gap-4">
+                {{#if isAdminSection}}
                 {{#if isLogged}}
+                <div class="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-sky-600/10 border border-sky-600/30">
+                    <div class="w-2 h-2 rounded-full bg-sky-600 animate-pulse"></div>
+                    <span class="text-[10px] font-black text-sky-600 uppercase tracking-widest">ADMIN SECURE</span>
+                </div>
+                <a href="/logout"
+                    class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white font-black text-[10px] tracking-wider uppercase hover:bg-white/10 transition-all">LOGOUT</a>
+                {{/if}}
+                {{else}}
+                {{#if isLogged}}
+                {{#unless isAdmin}}
                 <a href="/dashboard"
-                    class="px-5 py-1.5 rounded-lg bg-red-600 text-white font-black text-[10px] tracking-wider uppercase hover:bg-red-500 transition-all shadow-[0_0_15px_rgba(220,38,38,0.3)]">DASHBOARD</a>
+                    class="px-5 py-1.5 rounded-lg bg-sky-600 text-white font-black text-[10px] tracking-wider uppercase hover:bg-sky-500 transition-all shadow-[0_0_15px_rgba(14, 165, 233, 0.3)]">DASHBOARD</a>
+                {{/unless}}
+                {{#if isAdmin}}
+                <a href="/admin/dashboard"
+                    class="px-4 py-1.5 rounded-lg border border-sky-600/50 text-sky-500 font-black text-[10px] tracking-wider uppercase hover:bg-sky-600/10 transition-all">ADMIN</a>
+                {{/if}}
                 {{else}}
                 <a href="/login"
                     class="px-6 py-2 rounded-lg bg-white text-black font-black text-[10px] tracking-wider uppercase hover:bg-gray-200 transition-all">LOGIN</a>
                 {{/if}}
+                {{/if}}
             </div>
 
             <!-- Mobile Menu Toggle -->
-            <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-red-500 transition-colors">
+            <button id="mobile-menu-btn" class="md:hidden text-gray-400 hover:text-sky-500 transition-colors">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -533,23 +576,30 @@
         <div class="flex flex-col items-center gap-10 w-full px-12">
             <div class="flex flex-col items-center gap-6">
                 <a href="/"
-                    class="text-sm font-black text-gray-400 hover:text-red-600 tracking-[0.4em] uppercase transition-colors">HOME</a>
+                    class="text-sm font-black text-gray-400 hover:text-sky-600 tracking-[0.4em] uppercase transition-colors">HOME</a>
                 <a href="/products"
-                    class="text-sm font-black text-gray-400 hover:text-red-600 tracking-[0.4em] uppercase transition-colors">PRODUCTS</a>
+                    class="text-sm font-black text-gray-400 hover:text-sky-600 tracking-[0.4em] uppercase transition-colors">PRODUCTS</a>
+                {{#unless isAdmin}}
+                <a href="/admin/login"
+                    class="text-sm font-black text-sky-600/60 hover:text-sky-600 tracking-[0.4em] uppercase transition-colors">ADMIN</a>
+                {{/unless}}
                 <a href="https://discord.gg/n-corp"
-                    class="text-sm font-black text-gray-400 hover:text-red-600 tracking-[0.4em] uppercase transition-colors">DISCORD</a>
-                <a href="/dashboard"
-                    class="text-sm font-black text-gray-400 hover:text-red-600 tracking-[0.4em] uppercase transition-colors">STATUS</a>
+                    class="text-sm font-black text-gray-400 hover:text-sky-600 tracking-[0.4em] uppercase transition-colors">DISCORD</a>
+
             </div>
             <div class="flex flex-col gap-4 w-full max-w-xs pt-8 border-t border-white/5">
                 {{#if isLogged}}
+                {{#unless isAdmin}}
                 <a href="/dashboard"
-                    class="w-full py-4 text-center bg-red-600 rounded-xl text-white font-black text-xs tracking-widest uppercase shadow-[0_0_20px_rgba(220,38,38,0.3)]">DASHBOARD</a>
+                    class="w-full py-4 text-center bg-sky-600 rounded-xl text-white font-black text-xs tracking-widest uppercase shadow-[0_0_20px_rgba(14, 165, 233, 0.3)]">DASHBOARD</a>
+                {{/unless}}
                 <a href="/logout"
-                    class="w-full py-4 text-center bg-white/10 border border-white/10 rounded-xl text-red-400 font-black text-xs tracking-widest uppercase hover:bg-white/20">LOG OUT</a>
+                    class="w-full py-4 text-center bg-white/10 border border-white/10 rounded-xl text-sky-400 font-black text-xs tracking-widest uppercase hover:bg-white/20">LOG
+                    OUT</a>
                 {{else}}
                 <a href="/login"
-                    class="w-full py-4 text-center bg-white rounded-xl text-black font-black text-xs tracking-widest uppercase shadow-[0_0_20px_rgba(255,255,255,0.1)]">LOG IN</a>
+                    class="w-full py-4 text-center bg-white rounded-xl text-black font-black text-xs tracking-widest uppercase shadow-[0_0_20px_rgba(255,255,255,0.1)]">LOG
+                    IN</a>
                 {{/if}}
             </div>
         </div>
@@ -565,8 +615,8 @@
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
             <div class="col-span-1 md:col-span-2">
                 <div class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-red-600/20 rounded flex items-center justify-center">
-                        <span class="text-red-600 font-bold">N</span>
+                    <div class="w-8 h-8 bg-sky-600/20 rounded flex items-center justify-center">
+                        <span class="text-sky-600 font-bold">N</span>
                     </div>
                     <span class="text-xl font-bold text-white tracking-widest">CORP</span>
                 </div>
@@ -578,27 +628,25 @@
                 <h3 class="text-white font-bold mb-4 tracking-wider">PLATFORM</h3>
                 <ul class="space-y-2 text-sm text-gray-500">
                     <li>
-                        <a href="/" class="hover:text-red-600 transition-colors">Home</a>
+                        <a href="/" class="hover:text-sky-600 transition-colors">Home</a>
                     </li>
                     <li>
-                        <a href="/products" class="hover:text-red-600 transition-colors">Products</a>
+                        <a href="/products" class="hover:text-sky-600 transition-colors">Products</a>
                     </li>
-                    <li>
-                        <a href="/status" class="hover:text-red-600 transition-colors">System Status</a>
-                    </li>
+
                 </ul>
             </div>
             <div>
                 <h3 class="text-white font-bold mb-4 tracking-wider">LEGAL</h3>
                 <ul class="space-y-2 text-sm text-gray-500">
                     <li>
-                        <a href="#" class="hover:text-red-600 transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-sky-600 transition-colors">Terms of Service</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-red-600 transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-sky-600 transition-colors">Privacy Policy</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:text-red-600 transition-colors">Refund Policy</a>
+                        <a href="#" class="hover:text-sky-600 transition-colors">Refund Policy</a>
                     </li>
                 </ul>
             </div>
@@ -643,7 +691,7 @@
                         const distance = Math.sqrt(dx * dx + dy * dy);
 
                         if (distance < 150) {
-                            ctx.strokeStyle = `rgba(220, 38, 38, ${0.15 * (1 - distance / 150)})`;
+                            ctx.strokeStyle = `rgba(14, 165, 233, ${0.15 * (1 - distance / 150)})`;
                             ctx.beginPath();
                             ctx.moveTo(particles[i].x, particles[i].y);
                             ctx.lineTo(particles[j].x, particles[j].y);
@@ -653,7 +701,7 @@
                 }
 
                 // Draw Particles
-                ctx.fillStyle = 'rgba(220, 38, 38, 0.4)';
+                ctx.fillStyle = 'rgba(14, 165, 233, 0.4)';
                 particles.forEach(p => {
                     p.x += p.speedX;
                     p.y += p.speedY;
@@ -666,11 +714,11 @@
                     ctx.fill();
 
                     // Inner Glow Node
-                    ctx.fillStyle = 'rgba(220, 38, 38, 0.8)';
+                    ctx.fillStyle = 'rgba(14, 165, 233, 0.8)';
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.radius * 0.4, 0, Math.PI * 2);
                     ctx.fill();
-                    ctx.fillStyle = 'rgba(220, 38, 38, 0.4)';
+                    ctx.fillStyle = 'rgba(14, 165, 233, 0.4)';
                 });
 
                 requestAnimationFrame(animateParticles);

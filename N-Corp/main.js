@@ -13,6 +13,13 @@ const { app, getWss } = require("express-ws")(express());
 
 const t = require("./mongodb.js");
 const { Print, Log, Error } = require("./log.js");
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+    cloud_name: 'dfflcrqe0',
+    api_key: '571286633526846',
+    api_secret: 'rtO_SAjjh3qXgaO2evup2A82STw'
+});
 
 const client = require("redis").createClient({ port: 1080, host: "db.igrp.app", prefix: "n-corp:session" }), store = session({
     name: "session",
@@ -99,8 +106,19 @@ app
     ["/products", "products"]
 ]
     .map(([route, p]) => app.get(route, store, async ({ session }, res) => res.render(p, {
-        isLogged: "session" in session
+        isLogged: "session" in session,
+        isAdmin: session?.session?.role === "admin"
     })));
+
+app.get("/admin/login", store, (req, res) => {
+    if (req.session?.session?.role === "admin") return res.redirect("/admin/dashboard");
+    res.render("admin_login", { title: "Admin Login", isAdminSection: true });
+});
+
+app.get("/admin/dashboard", store, (req, res) => {
+    if (req.session?.session?.role !== "admin") return res.redirect("/admin/login");
+    res.render("admin_dashboard", { title: "Admin Dashboard", isAdminSection: true, isLogged: true, isAdmin: true });
+});
 
 app
     .use("/api", api)
@@ -120,15 +138,23 @@ app
 
             account = await t.collection("license-key").findOne({ key: query.key, role: query.role })
         } else {
+            if (!query.user || !query.pass)
+                return res.jsonp(false, null, "Enter Username & Password");
 
-        };
+            account = await t.collection("users").findOne({ user: query.user, role: query.role });
+        }
 
         if ((query.role == "key" && !query.key) || (query.role != "key" && (!query.user || !query.pass)))
             return res.jsonp(false, null, query.role == "key" ? "Invalid credentials" : "Enter Username & Password");
 
         // const account = ;
 
-        if (account)
+        if (account) {
+            // Check for expiration
+            if (account.validTill && account.validTill < Date.now()) {
+                return res.jsonp(false, "Asset Expired");
+            }
+
             // Allow login if role is key OR password matches
             if (query.role == "key" || account.pass == query.pass) {
                 session.session = {
@@ -140,8 +166,61 @@ app
                 return res.jsonp(true);
             } else
                 return res.jsonp(false, "Incorrect Password");
-        else
+        } else
             return res.jsonp(false, "Invalid Username or Key");
+    })
+    .post("/api/admin/login", async ({ query, session }, res) => {
+        if (!query.user || !query.pass)
+            return res.jsonp(false, null, "Enter Username & Password");
+
+        // Simple admin check - in a real app, this would check a database
+        if (query.user === "admin" && query.pass === "admin") {
+            session.session = {
+                role: "admin",
+                user: "admin"
+            };
+            return res.jsonp(true);
+        } else {
+            return res.jsonp(false, null, "Invalid Admin Credentials");
+        }
+    })
+    .get("/api/admin/list", store, async (req, res) => {
+        if (req.session?.session?.role !== "admin") return res.status(403).json({ status: false });
+        const keys = await t.collection("license-key").find().toArray();
+        const users = await t.collection("users").find().toArray();
+        return res.json({ status: true, data: { keys, users } });
+    })
+    .post("/api/admin/create", store, async (req, res) => {
+        if (req.session?.session?.role !== "admin") return res.status(403).json({ status: false });
+        const { type, role, value, pass, duration } = req.query;
+
+        let validTill = null;
+        if (duration !== 'lifetime') {
+            const days = parseInt(duration) || 30;
+            validTill = Date.now() + days * 24 * 60 * 60 * 1000;
+        }
+
+        if (type === "key") {
+            await t.collection("license-key").insertOne({
+                key: value,
+                role: "key",
+                validTill: validTill
+            });
+        } else {
+            await t.collection("users").insertOne({
+                user: value,
+                pass: pass || "123456",
+                role: role,
+                validTill: validTill
+            });
+        }
+        return res.json({ status: true });
+    })
+    .post("/api/admin/delete", store, async (req, res) => {
+        if (req.session?.session?.role !== "admin") return res.status(403).json({ status: false });
+        const { type, id } = req.query;
+        await t.collection(type === "key" ? "license-key" : "users").deleteOne({ _id: id });
+        return res.json({ status: true });
     })
     .post("/api/register", async ({ query, session }, res) => {
         if (!query.role)
@@ -172,10 +251,13 @@ app
         if (!session?.session)
             return res.redirect(`/login?redirect=${path}`);
         else
-            return res.render("dashboard", {}, { layout: false });
+            return res.render("dashboard", { layout: false, isLogged: true, isAdmin: session?.session?.role === "admin" });
+    })
+    .get("/status", store, async (req, res) => {
+        res.render("dashboard", { layout: false, isLogged: !!req.session?.session, isAdmin: req.session?.session?.role === "admin" });
     })
     .get("/logout", store, (req, res) => {
-        req.session.destroy(() => {});
+        req.session.destroy(() => { });
         res.redirect("/");
     });
 
@@ -187,6 +269,40 @@ api
             });
         else
             return res.jsonp(false, null, "Invalid Product");
+    })
+    .get("/user/info", store, async (req, res) => {
+        if (!req.session?.session) return res.status(401).json({ status: false });
+        const { user, role } = req.session.session;
+        const account = await t.collection(role === 'key' ? 'license-key' : 'users').findOne(role === 'key' ? { key: user } : { user });
+        if (!account) return res.json({ status: false });
+        return res.json({ status: true, data: account });
+    })
+    .get("/whitelist/list", store, async (req, res) => {
+        if (!req.session?.session) return res.status(401).json({ status: false });
+        const list = await t.collection("whitelist-uids").find({ whitelistedBy: req.session.session.user }).toArray();
+        return res.json({ status: true, data: list });
+    })
+    .post("/whitelist/add", store, async (req, res) => {
+        if (!req.session?.session) return res.status(401).json({ status: false });
+        const { uid, name, region, expiry } = req.query;
+        if (!uid) return res.jsonp(false, null, "UID is required");
+
+        await t.collection("whitelist-uids").insertOne({
+            uid,
+            name: name || "N/A",
+            region: region || "Global",
+            whitelistedBy: req.session.session.user,
+            expiry: expiry || "Permanent",
+            status: "Active",
+            createdAt: Date.now()
+        });
+        return res.json({ status: true });
+    })
+    .post("/whitelist/delete", store, async (req, res) => {
+        if (!req.session?.session) return res.status(401).json({ status: false });
+        const { id } = req.query;
+        await t.collection("whitelist-uids").deleteOne({ _id: id });
+        return res.json({ status: true });
     });
 
 api
@@ -282,23 +398,30 @@ api
 
 ["api", "app"].forEach(i => app.use(`/${i}`, (req, res) => res.status(200).jsonp(false, null, "Not Found.")));
 
-const server = http.createServer(app);
 const defaultPort = Number(process.env.PORT) || 8080;
 const maxAttempts = 10;
 
 function tryListen(port) {
     if (port > defaultPort + maxAttempts - 1) {
-        console.error(`Could not start: ports ${defaultPort} to ${defaultPort + maxAttempts - 1} are in use. Stop the process (e.g. taskkill /F /IM node.exe) and try again.`);
+        console.error(`Could not start: ports ${defaultPort} to ${defaultPort + maxAttempts - 1} are in use.`);
         process.exit(1);
     }
-    server.listen(port, "0.0.0.0")
-        .once("listening", () => Print("http", `listening at http://0.0.0.0:${port} (PID ${process.pid})`))
+
+    const srv = http.createServer(app);
+    srv.listen(port, "0.0.0.0")
+        .once("listening", () => {
+            Print("http", `listening at http://localhost:${port} (PID ${process.pid})`);
+            console.log(`\x1b[32m%s\x1b[0m`, `➜  Local:   http://localhost:${port}`);
+        })
         .once("error", (err) => {
+            srv.close();
             if (err.code === "EADDRINUSE") {
                 Print("http", `port ${port} in use, trying ${port + 1}...`);
                 tryListen(port + 1);
-            } else
-                throw err;
+            } else {
+                console.error(`[ERROR] Server failed to start: ${err.message}`);
+                process.exit(1);
+            }
         });
 }
 tryListen(defaultPort);
